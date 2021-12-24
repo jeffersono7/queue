@@ -7,6 +7,8 @@ defmodule Queue.MixProject do
       version: "0.1.0",
       elixir: "~> 1.12",
       source_url: "https://github.com/jeffersono7/queue",
+      description: description(),
+      package: package(),
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
