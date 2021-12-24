@@ -1,10 +1,10 @@
 # Queue
 
-**TODO: Add description**
+**Queue wrapper of erlang queue**
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
+The package can be installed
 by adding `queue` to your list of dependencies in `mix.exs`:
 
 ```elixir
@@ -13,6 +13,28 @@ def deps do
     {:queue, "~> 0.1.0"}
   ]
 end
+```
+
+## Usage
+
+### Queue module
+``` elixir
+queue = Queue.new()
+#Queue<Empty>
+
+iex> queue = Queue.inside(queue, 1)
+
+iex> 1 == Queue.out(queue)
+true
+```
+
+### Queue agent module
+``` elixir
+iex> Queue.Agent.start_link(nil)
+iex> Queue.Agent.inside(1)
+iex> out = Queue.Agent.out()
+iex> out == 1
+true
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
