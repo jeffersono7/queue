@@ -1,5 +1,4 @@
 defimpl Inspect, for: Queue do
-
   def inspect(queue, opts) do
     if Queue.empty?(queue), do: "#Queue<Empty>", else: compile_inspect(queue, opts)
   end

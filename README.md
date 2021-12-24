@@ -1,6 +1,6 @@
 # Queue
 
-**Queue wrapper of erlang queue**
+**Modules to work with queue**
 
 ## Installation
 

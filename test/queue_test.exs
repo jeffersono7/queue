@@ -32,9 +32,10 @@ defmodule QueueTest do
     test "When given many items, return queue with all items" do
       items = 1..1_000 |> Enum.map(& &1)
 
-      queue = Enum.reduce(items, Queue.new(), fn item, acc ->
-        Queue.inside(acc, item)
-      end)
+      queue =
+        Enum.reduce(items, Queue.new(), fn item, acc ->
+          Queue.inside(acc, item)
+        end)
 
       result = extract_all_items(queue, [])
 
@@ -44,7 +45,9 @@ defmodule QueueTest do
 
   defp extract_all_items(queue, acc) do
     case Queue.empty?(queue) do
-      true -> acc
+      true ->
+        acc
+
       false ->
         {item, queue_after} = Queue.out(queue)
         extract_all_items(queue_after, [item] ++ acc)

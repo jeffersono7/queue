@@ -17,7 +17,7 @@ defmodule Queue do
           iex> Queue.new()
           #Queue<Empty>
   """
-  @spec new :: Queue.t
+  @spec new :: Queue.t()
   def new do
     queue = :queue.new()
 

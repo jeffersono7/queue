@@ -1,5 +1,4 @@
 defmodule Queue.AgentTest do
-
   use ExUnit.Case
 
   alias Queue.Agent, as: QueueAgent
