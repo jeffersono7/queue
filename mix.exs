@@ -34,6 +34,7 @@ defmodule Queue.MixProject do
 
   defp package do
     [
+      name: "queue_tool",
       files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
       licenses: ["Apache-2.0"],
       links: %{
