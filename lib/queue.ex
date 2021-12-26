@@ -115,4 +115,27 @@ defmodule Queue do
   def first(queue) do
     head(queue)
   end
+
+  @doc """
+  Get last element of queue.
+
+  Example:
+
+      iex> queue = Queue.new() |> Queue.inside(1)
+      iex> Queue.last(queue)
+      1
+      iex> queue = Queue.inside(queue, 2)
+      iex> Queue.last(queue)
+      2
+      iex> Queue.new() |> Queue.last()
+      nil
+  """
+  @spec last(Queue.t()) :: any()
+  def last(%Queue{queue: queue}) do
+    try do
+      :queue.last(queue)
+    rescue
+      ErlangError -> nil
+    end
+  end
 end
