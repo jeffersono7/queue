@@ -43,6 +43,34 @@ defmodule QueueTest do
     end
   end
 
+  describe "head/1" do
+    test "When given an queue, return the head element of queue" do
+      queue = Queue.new() |> Queue.inside(1)
+
+      assert 1 == Queue.head(queue)
+    end
+
+    test "When given empty queue, return nil" do
+      result = Queue.new() |> Queue.head()
+
+      assert nil == result
+    end
+  end
+
+  describe "first/1" do
+    test "When given an queue, return the first element of queue" do
+      queue = Queue.new() |> Queue.inside(1)
+
+      assert 1 == Queue.first(queue)
+    end
+
+    test "When given empty queue, return nil" do
+      result = Queue.new() |> Queue.first()
+
+      assert nil == result
+    end
+  end
+
   defp extract_all_items(queue, acc) do
     case Queue.empty?(queue) do
       true ->

@@ -77,4 +77,42 @@ defmodule Queue do
       {:empty, queue} -> {nil, %Queue{queue: queue}}
     end
   end
+
+  @doc """
+  Get head element of queue
+
+  Example:
+
+      iex> queue = Queue.new() |> Queue.inside(1)
+      iex> Queue.head(queue)
+      1
+      iex> Queue.new() |> Queue.head()
+      nil
+  """
+  @spec head(Queue.t()) :: any()
+  def head(%__MODULE__{queue: queue}) do
+    try do
+      :queue.head(queue)
+    rescue
+      ErlangError -> nil
+    end
+  end
+
+  @doc """
+  Get first element of queue.
+
+  This function is equals head function.
+
+  Example:
+
+      iex> queue = Queue.new() |> Queue.inside(1)
+      iex> Queue.first(queue)
+      1
+      iex> Queue.new() |> Queue.first()
+      nil
+  """
+  @spec first(Queue.t()) :: any()
+  def first(queue) do
+    head(queue)
+  end
 end
