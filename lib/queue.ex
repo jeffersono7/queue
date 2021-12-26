@@ -1,6 +1,8 @@
 defmodule Queue do
   @moduledoc """
   Module for work queue.
+
+  This module implement protocol Enumerable.
   """
 
   @keys [:queue]
@@ -138,4 +140,16 @@ defmodule Queue do
       ErlangError -> nil
     end
   end
+
+  @doc """
+  Return a list with all values of queue.
+
+  Examples:
+
+      iex> queue = Queue.new() |> Queue.inside(1) |> Queue.inside(2)
+      iex> Queue.to_list(queue)
+      [1, 2]
+  """
+  @spec to_list(Queue.t()) :: list()
+  def to_list(%Queue{queue: queue}), do: :queue.to_list(queue)
 end
