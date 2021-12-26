@@ -6,7 +6,8 @@ defimpl Inspect, for: Queue do
   defp compile_inspect(%Queue{queue: queue}, _opts) do
     head = :queue.head(queue)
     last = :queue.last(queue)
+    len = :queue.len(queue)
 
-    "#Queue<front:#{head}...back#{last}>"
+    if len === 1, do: "#Queue<1>", else: "#Queue<#{head}...:#{last}>"
   end
 end

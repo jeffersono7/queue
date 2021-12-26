@@ -42,6 +42,14 @@ defmodule Queue do
 
   @doc """
   Put element in queue
+
+  Example:
+
+      iex> queue = Queue.new() |> Queue.inside(1)
+      #Queue<1>
+      iex> {1, queue} = Queue.out(queue)
+      iex> queue
+      #Queue<Empty>
   """
   @spec inside(Queue.t(), any()) :: any()
   def inside(%__MODULE__{queue: queue}, item) do
@@ -52,6 +60,15 @@ defmodule Queue do
 
   @doc """
   Get element of queue
+
+  Example:
+
+      iex> queue = Queue.new() |> Queue.inside(1)
+      #Queue<1>
+      iex> {1, queue} = Queue.out(queue)
+      iex> queue
+      #Queue<Empty>
+      iex> {nil, ^queue} = Queue.out(queue)
   """
   @spec out(Queue.t()) :: any()
   def out(%__MODULE__{queue: queue}) do
