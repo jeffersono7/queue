@@ -8,6 +8,6 @@ defimpl Inspect, for: Queue do
     last = :queue.last(queue)
     len = :queue.len(queue)
 
-    if len === 1, do: "#Queue<1>", else: "#Queue<#{head}...:#{last}>"
+    if len === 1, do: "#Queue<1>", else: "#Queue<#{head}...#{last}>"
   end
 end
