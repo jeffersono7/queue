@@ -43,6 +43,16 @@ defmodule QueueTest do
     end
   end
 
+  describe "out/1" do
+    test "When given queue, return first element and queue without it" do
+      queue = Queue.new() |> Queue.inside(2) |> Queue.inside(1)
+
+      assert {2, queue} = Queue.out(queue)
+      assert {1, queue} = Queue.out(queue)
+      assert {nil, ^queue} = Queue.out(queue)
+    end
+  end
+
   describe "head/1" do
     test "When given a queue, return the head element of queue" do
       queue = Queue.new() |> Queue.inside(1)
@@ -82,6 +92,37 @@ defmodule QueueTest do
 
     test "When given a empty queue, return nil value" do
       assert nil == Queue.new() |> Queue.last()
+    end
+  end
+
+  describe "to_list/1" do
+    test "When given queue, retuns the values of queue" do
+      queue = Queue.new() |> Queue.inside("first") |> Queue.inside("second")
+
+      assert ["first", "second"] == Queue.to_list(queue)
+    end
+
+    test "When given empty queue, returns the empty list of queue values" do
+      assert [] = Queue.new() |> Queue.to_list()
+    end
+  end
+
+  describe "values/1" do
+    test "When given queue, retuns the values of queue" do
+      queue = Queue.new() |> Queue.inside("first") |> Queue.inside("second")
+
+      assert ["first", "second"] == Queue.values(queue)
+    end
+
+    test "When given empty queue, returns the empty list of queue values" do
+      assert [] = Queue.new() |> Queue.values()
+    end
+  end
+
+  describe "count/1" do
+    test "When given queue, return the length of queue" do
+      assert 2 = Queue.new() |> Queue.inside(1) |> Queue.inside(2) |> Queue.count()
+      assert 0 = Queue.new() |> Queue.count()
     end
   end
 
