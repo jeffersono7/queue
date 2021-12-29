@@ -15,7 +15,7 @@ defmodule Queue do
   @doc """
   Return new queue structure
 
-  Example:
+  ## Example:
           iex> Queue.new()
           #Queue<Empty>
   """
@@ -29,7 +29,7 @@ defmodule Queue do
   @doc """
   Return the queue is empty
 
-  Example:
+  ## Example:
         iex> queue = Queue.new()
         iex> Queue.empty?(queue)
         true
@@ -45,7 +45,7 @@ defmodule Queue do
   @doc """
   Put element in queue
 
-  Example:
+  ## Example:
 
       iex> queue = Queue.new() |> Queue.inside(1)
       #Queue<1>
@@ -63,7 +63,7 @@ defmodule Queue do
   @doc """
   Get element of queue
 
-  Example:
+  ## Example:
 
       iex> queue = Queue.new() |> Queue.inside(1)
       #Queue<1>
@@ -83,7 +83,7 @@ defmodule Queue do
   @doc """
   Get head element of queue
 
-  Example:
+  ## Example:
 
       iex> queue = Queue.new() |> Queue.inside(1)
       iex> Queue.head(queue)
@@ -105,7 +105,7 @@ defmodule Queue do
 
   This function is equals head function.
 
-  Example:
+  ## Example:
 
       iex> queue = Queue.new() |> Queue.inside(1)
       iex> Queue.first(queue)
@@ -121,7 +121,7 @@ defmodule Queue do
   @doc """
   Get last element of queue.
 
-  Example:
+  ## Example:
 
       iex> queue = Queue.new() |> Queue.inside(1)
       iex> Queue.last(queue)
@@ -142,9 +142,9 @@ defmodule Queue do
   end
 
   @doc """
-  Return a list with all values of queue.
+  Returns a list with all values of queue.
 
-  Examples:
+  ## Examples:
 
       iex> queue = Queue.new() |> Queue.inside(1) |> Queue.inside(2)
       iex> Queue.to_list(queue)
@@ -152,4 +152,18 @@ defmodule Queue do
   """
   @spec to_list(Queue.t()) :: list()
   def to_list(%Queue{queue: queue}), do: :queue.to_list(queue)
+
+  @doc """
+  Returns the size of the queue.
+
+  ## Examples
+
+      iex> queue = Queue.new() |> Queue.inside(1) |> Queue.inside(2)
+      iex> Queue.count(queue)
+      2
+  """
+  @spec count(Queue.t()) :: non_neg_integer()
+  def count(%Queue{queue: queue}) do
+    :queue.len(queue)
+  end
 end
