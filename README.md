@@ -18,6 +18,9 @@ end
 ## Usage
 
 ### Queue module
+
+*This module implements Enumerable protocol.*
+
 ``` elixir
 queue = Queue.new()
 #Queue<Empty>
