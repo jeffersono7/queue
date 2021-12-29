@@ -154,6 +154,19 @@ defmodule Queue do
   def to_list(%Queue{queue: queue}), do: :queue.to_list(queue)
 
   @doc """
+  Returns a list of values.
+  It's equal to to_list/1
+
+  ## Examples:
+
+      iex> queue = Queue.new() |> Queue.inside(1) |> Queue.inside(2)
+      iex> Queue.values(queue)
+      [1, 2]
+  """
+  @spec values(Queue.t()) :: list()
+  def values(%Queue{} = queue), do: to_list(queue)
+
+  @doc """
   Returns the size of the queue.
 
   ## Examples
