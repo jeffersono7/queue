@@ -35,7 +35,7 @@ defimpl Enumerable, for: Queue do
     {:ok, Queue.count(queue), &slicing_fun(queue, 0, [], &1, &2)}
   end
 
-  defp slicing_fun(%Queue{} = _queue, index, list, start, length) when (index - start) === length do
+  defp slicing_fun(%Queue{} = _queue, index, list, start, length) when index - start === length do
     list
   end
 
