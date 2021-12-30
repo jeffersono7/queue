@@ -1,6 +1,8 @@
 defmodule Queue do
   @moduledoc """
   Module for work queue.
+
+  This module implement protocol Enumerable.
   """
 
   @keys [:queue]
@@ -13,7 +15,7 @@ defmodule Queue do
   @doc """
   Return new queue structure
 
-  Example:
+  ## Example:
           iex> Queue.new()
           #Queue<Empty>
   """
@@ -27,7 +29,7 @@ defmodule Queue do
   @doc """
   Return the queue is empty
 
-  Example:
+  ## Example:
         iex> queue = Queue.new()
         iex> Queue.empty?(queue)
         true
@@ -43,7 +45,7 @@ defmodule Queue do
   @doc """
   Put element in queue
 
-  Example:
+  ## Example:
 
       iex> queue = Queue.new() |> Queue.inside(1)
       #Queue<1>
@@ -61,7 +63,7 @@ defmodule Queue do
   @doc """
   Get element of queue
 
-  Example:
+  ## Example:
 
       iex> queue = Queue.new() |> Queue.inside(1)
       #Queue<1>
@@ -81,7 +83,7 @@ defmodule Queue do
   @doc """
   Get head element of queue
 
-  Example:
+  ## Example:
 
       iex> queue = Queue.new() |> Queue.inside(1)
       iex> Queue.head(queue)
@@ -103,7 +105,7 @@ defmodule Queue do
 
   This function is equals head function.
 
-  Example:
+  ## Example:
 
       iex> queue = Queue.new() |> Queue.inside(1)
       iex> Queue.first(queue)
@@ -119,7 +121,7 @@ defmodule Queue do
   @doc """
   Get last element of queue.
 
-  Example:
+  ## Example:
 
       iex> queue = Queue.new() |> Queue.inside(1)
       iex> Queue.last(queue)
@@ -137,5 +139,44 @@ defmodule Queue do
     rescue
       ErlangError -> nil
     end
+  end
+
+  @doc """
+  Returns a list with all values of queue.
+
+  ## Examples:
+
+      iex> queue = Queue.new() |> Queue.inside(1) |> Queue.inside(2)
+      iex> Queue.to_list(queue)
+      [1, 2]
+  """
+  @spec to_list(Queue.t()) :: list()
+  def to_list(%Queue{queue: queue}), do: :queue.to_list(queue)
+
+  @doc """
+  Returns a list of values.
+  It's equal to to_list/1
+
+  ## Examples:
+
+      iex> queue = Queue.new() |> Queue.inside(1) |> Queue.inside(2)
+      iex> Queue.values(queue)
+      [1, 2]
+  """
+  @spec values(Queue.t()) :: list()
+  def values(%Queue{} = queue), do: to_list(queue)
+
+  @doc """
+  Returns the size of the queue.
+
+  ## Examples
+
+      iex> queue = Queue.new() |> Queue.inside(1) |> Queue.inside(2)
+      iex> Queue.count(queue)
+      2
+  """
+  @spec count(Queue.t()) :: non_neg_integer()
+  def count(%Queue{queue: queue}) do
+    :queue.len(queue)
   end
 end
